@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>giveMEpassword</title>
+  <link rel="stylesheet" href="https://pyscript.net/releases/2025.3.1/core.css" />
+  <script type="module" src="https://pyscript.net/releases/2025.3.1/core.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600&display=swap');
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Fredoka', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: radial-gradient(circle at top left, #fceabb, #f8b500);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    /* 🍩 Sprinkle particles */
+    .sprinkle {
+      position: absolute;
+      width: 10px;
+      height: 4px;
+      border-radius: 4px;
+      transform: rotate(45deg);
+      opacity: 0.8;
+      animation: float 20s linear infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .card {
+      background: #fff3e6;
+      border: 6px dotted #d2691e;
+      border-radius: 30px;
+      box-shadow: 0 0 0 5px #fdd9a0, 0 12px 30px rgba(0,0,0,0.25);
+      padding: 40px;
+      width: 300px;
+      text-align: center;
+      z-index: 1;
+      position: relative;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 14px;
+      font-size: 1.1rem;
+      border: 3px dashed #b5651d;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      background-color: #fffdf8;
+      color: #4e342e;
+      outline: none;
+      box-shadow: none;
+      caret-color: #d2691e;
+      
+      border-color: #fbbf24;
+      background-color: #fffbe6;
+    }
+
+    input[type="text"]:focus {
+      border-color: #fbbf24;
+    }
+
+    button {
+      padding: 12px 24px;
+      margin: 8px 5px;
+      font-size: 1rem;
+      background: #ffb703;
+      border: none;
+      border-radius: 50px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 2px 3px 0 #d2691e;
+      transition: all 0.2s ease;
+    }
+
+    button:hover {
+      background: #faa307;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Moving sprinkles -->
+  <script>
+    const colors = ['#ff69b4', '#8ecae6', '#ffb703', '#fb5607', '#06d6a0', '#9d4edd'];
+    for (let i = 0; i < 50; i++) {
+      const el = document.createElement('div');
+      el.className = 'sprinkle';
+      el.style.background = colors[Math.floor(Math.random() * colors.length)];
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.top = Math.random() * 100 + 'vh';
+      el.style.animationDuration = 10 + Math.random() * 20 + 's';
+      el.style.transform = `rotate(${Math.random() * 360}deg)`;
+      document.body.appendChild(el);
+      function msg(){
+      if(!(document.getElementById("password"))){
+      
+        alert("password copied")
+      }}
+    }
+  </script>
+    
+  <!-- Main UI -->
+  <div class="card">
+    <input type="text" id="password" readonly placeholder="Your sweet password 🍩" />
+    <br />
+    <button id="copy">Copy</button>
+    <button id="gen">Generate</button>
+  </div>
+
+  <script type="py" src="main.py"></script>
+</body>
+</html>
